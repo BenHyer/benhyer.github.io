@@ -1,0 +1,216 @@
+
+
+ .title,.info,.profile,.education,.skills,.employment{
+    padding: 1em 1em 1em 1em;
+    /* border: 1px black solid; */
+    vertical-align: text-top;
+} 
+
+h2{
+    text-align: center;
+}
+
+
+dl {
+    width: 60%;
+    overflow: hidden;
+  }
+
+  dt {
+      font-size: 16px;
+    float: left;
+    width: 50%;
+    
+  }
+  dd {
+    float: left;
+    width: 50%;
+    margin: 0
+  }
+
+  li{
+      font-size: 17px;
+  }
+
+.title{
+    grid-area: title;
+    text-align: center;
+    align-items: center;
+
+    grid-column-start: 1;
+    grid-column-end: 5;
+
+    grid-row-start: 1;
+    grid-row-end: 1;
+
+    border-bottom: 3px solid black;
+
+  
+}
+
+a:link{
+    color:blue;
+    
+    
+}
+
+h3{
+    color:black;
+}
+
+a:hover{
+    color:blue;
+}
+
+#company{
+    color:black;
+}
+
+.info{
+    grid-area: info;
+
+    grid-column-start: 1;
+    grid-column-end: 5;
+
+    grid-row-start: 2;
+    grid-row-end: 2;
+
+    border-bottom: 3px solid black;
+
+   
+}
+
+.profile{
+    grid-area: profile;
+    align-items: center;
+    justify-items: center;
+
+    grid-column-start: 1;
+    grid-column-end: 5;
+
+    grid-row-start: 3;
+    grid-row-end: 3;
+    
+    border-bottom: 3px solid black;
+   
+}
+
+.education {
+    grid-area: education;
+    grid-column-start: 1;
+    grid-column-end: 2;
+
+    grid-row-start: 4;
+    grid-row-end: 5;
+
+     border-bottom: 3px solid black; 
+}
+
+.skills{
+    grid-area: skills;
+
+    grid-column-start: 1;
+    grid-column-end: 2;
+
+    grid-row-start: 5;
+    grid-row-end: 6;
+    
+}
+
+.employment{
+    grid-area: employment;
+    text-align: left;
+
+    grid-column-start: 2;
+    grid-column-end: 5;
+
+    grid-row-start: 4;
+    grid-row-end: 7;
+
+   
+
+    border-left: 3px solid black;
+    
+
+}
+
+.resume{
+    display: grid;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    grid-template-columns: auto auto auto auto auto  ;
+    
+grid-gap : 10px;
+ background-color: rgb(187, 204, 241);
+padding: 10px;
+
+     /* width  : 250mm; */
+    /* height: 70.5mm;  */
+
+}
+
+ @media screen and (min-width: 30em) and (max-width: 40em)
+{
+    .resume{
+       
+        display: grid;
+        background-color: rgb(187, 204, 241);
+        grid-template-areas: 
+         'title'
+        'info'
+        'profile'
+        'education'
+        'skills'
+        'employment'
+        ;
+    }
+
+ .title{
+        grid-area: title;
+    }
+
+    .info{
+       grid-area: info;
+    }
+
+    .profile{
+       grid-area: profile;
+        
+    } 
+
+    .education{
+        grid-area: education;
+    }
+
+    .skills{
+       grid-area: skills;
+
+       border-bottom:3px solid black ;
+    }
+
+    .employment{
+        grid-area: employment;
+
+        border-left: none;
+    }
+    
+    dl {
+        width: 80%;
+        overflow: hidden;
+      }
+    
+      dt {
+          font-size: 16px;
+        float: left;
+        width: 30%;
+        
+      }
+      dd {
+        float: left;
+        width: 50%;
+        margin: 0
+      }
+    
+      li{
+          font-size: 17px;
+      }
+} 
