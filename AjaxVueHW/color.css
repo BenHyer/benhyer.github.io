@@ -1,0 +1,70 @@
+main{
+  display: grid;
+  grid-template-columns: auto auto auto auto ;
+  background-color:lightgrey ;
+  
+}
+
+  table, th, td{
+    border: solid 1px gray;   
+}
+
+th{
+  background-color: lightblue;
+}
+
+td{
+  background-color:red;
+}
+
+ul{
+  list-style-type: none;
+}
+
+li{
+  margin-bottom: 10px;
+}
+
+
+#infoForm{
+grid-column-start: 2;
+grid-column-end: 4;
+  
+grid-row-start: 1;
+grid-row-end: 1; 
+  
+text-align: center;
+}
+
+
+table{
+      overflow-x: auto;
+}
+
+.infoTable{
+grid-column-start: 2;
+grid-column-end: 4; 
+
+grid-row-start: 3;
+grid-row-end: 4; 
+
+margin: auto;
+
+text-align: center;
+
+}
+
+.compareTable{
+grid-column-start: 2;
+grid-column-end: 4;
+    
+grid-row-start: 5;
+grid-row-end: 6;  
+
+
+margin: auto;
+margin-top: 3em;
+text-align: center;
+
+}
+ 

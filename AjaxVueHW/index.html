@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="decoder.js"></script>
+    <link rel="stylesheet" href="color.css" />
+
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+
+<body>
+    <div class="page">
+
+        
+        <main>
+            
+            <form id="infoForm">
+                <ul>
+
+                    <li><img src="speed2.jpg" alt="Speedometer"></li>
+                    <li><label for="vin" class="vinss">Vin
+                            <input type="text" id="vin" v-model="currentVin">
+                        </label> </li>
+
+                    <li><label for="name" class="namess">Name
+                            <input type="text" id="name" v-model="currentName">
+                        </label></li>
+
+                    <li><button @click="fetchCarInfo()" class="button">Compare</button></li>
+
+                </ul>
+
+            </form>
+
+            <div class="infoTable">
+                <h2>Info Table</h2>
+                <table>
+                    <thead>
+                        <tr>
+                        </tr>
+                        <tr id="headers">
+                            <th scope="col"> Specs </th>
+                            <th scope="col" id="nickname"> Name </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <th scope="row"> Year </th>
+                            <td id="year1"></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"> Make </th>
+                            <td id="make1"></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"> Model </th>
+                            <td id="model1"></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"> DisplacementCC </th>
+                            <td id="DisplacementCC"></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"> DisplacementCI </th>
+                            <td id="DisplacementCI"></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"> DisplacementL </th>
+                            <td id="DisplacementL"></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"> EngineCylinders </th>
+                            <td id="EngineCylinders"></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"> EngineHP </th>
+                            <td id="EngineHP"> </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="compareTable">
+
+                <h2>Compare Table</h2>
+
+                <table class="compTable">
+                    <thead>
+                        <tr>
+                        </tr>
+                        <tr id="names">
+
+                            <th scope="col"> Specs </th>
+                            <th scope="col" v-for="car in compareCars"> {{car.Name}} </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr v-for="spec in specs">
+                            <th scope="row"> {{spec}} </th>
+                            <td v-for="car in compareCars">{{car[spec]}}</td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <p id="Model"> </p>
+
+        </main>
+
+        <script>
+            Vue.createApp({
+                data: function () {
+                    return {
+                        compareCars: [],
+                        specs: ["Vin", "Year", "Make", "Model", "DisplacementCC", "DisplacementCI", "DisplacementL", "EngineCylinders", "EngineHP"],
+                        //currentCar: null,
+                        currentVin: null,
+                        currentName: null
+
+                    }
+                }
+                ,
+                methods: {
+                    fetchCarInfo: function () {
+                        fetch("https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/" + this.currentVin + "?format=json").
+                            then(
+                                response => response.json()).
+                            then(car => {
+                                console.log(car.Results[0])
+
+                                var Make = car.Results[0].Make;
+                                var Model = car.Results[0].Model;
+                                var Year = car.Results[0].ModelYear;
+                                var DisplacementCC = car.Results[0].DisplacementCC;
+                                var DisplacementCI = car.Results[0].DisplacementCI;
+                                var DisplacementL = car.Results[0].DisplacementL;
+                                var EngineCylinders = car.Results[0].EngineCylinders;
+                                var EngineHP = car.Results[0].EngineHP;
+
+                                let currentCar = new Vehicle(this.currentVin, this.currentName, Make, Model, Year, DisplacementCC, DisplacementCI,
+                                    DisplacementL, EngineCylinders, EngineHP);
+
+                                this.compareCars.push(currentCar);
+
+                            });
+
+                    }
+                }
+            }).mount("main");
+        </script>
+    </div>
+</body>
+
+</html>
